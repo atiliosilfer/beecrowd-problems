@@ -1,3 +1,4 @@
+#include <cctype>
 #include <iostream>
 #include <string.h>
 #include <string>
@@ -15,14 +16,16 @@ int main() {
     getline(cin, str);
 
     string occultMessage = "";
-    bool jumpNextChar = false;
+    int i = 0;
 
-    for (int i = 0; i < str.length(); i++) {
-      if (str[i] != ' ' && jumpNextChar == false) {
+    while (str[i]) {
+      if (str[i] == ' ')
+        i++;
+      else {
         occultMessage += str[i];
-        jumpNextChar = true;
-      } else if (str[i] == ' ') {
-        jumpNextChar = false;
+
+        while (isalpha(str[i]))
+          i++;
       }
     }
 
